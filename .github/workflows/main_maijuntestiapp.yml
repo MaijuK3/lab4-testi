@@ -23,14 +23,14 @@ jobs:
       uses: docker/login-action@v2
       with:
         registry: https://maijuntesti.azurecr.io/
-        username: ${{ secrets.AzureAppService_ContainerUsername_3664381b7a9c4110b954c9496100ba8d }}
-        password: ${{ secrets.AzureAppService_ContainerPassword_8d35d78f3fb342978e611f67c5aa032d }}
+        username: ${{ secrets.AzureAppService_ContainerUsername_df3d01bc35c7476a9ffef0a95093562f }}
+        password: ${{ secrets.AzureAppService_ContainerPassword_c07702ddf7ab4d158156f0e53a3e3201 }}
 
     - name: Build and push container image to registry
       uses: docker/build-push-action@v3
       with:
         push: true
-        tags: maijuntesti.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_3664381b7a9c4110b954c9496100ba8d }}/webapp:${{ github.sha }}
+        tags: maijuntesti.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_df3d01bc35c7476a9ffef0a95093562f }}/maijuntesti/webapp:${{ github.sha }}
         file: ./Dockerfile
 
   deploy:
@@ -47,5 +47,5 @@ jobs:
       with:
         app-name: 'maijuntestiapp'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_16c758b74cbf4dcf8c19d58415f32eea }}
-        images: 'maijuntesti.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_3664381b7a9c4110b954c9496100ba8d }}/webapp:${{ github.sha }}'
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_667c9b84685e4cde80554bf5af6dbfd2 }}
+        images: 'maijuntesti.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_df3d01bc35c7476a9ffef0a95093562f }}/maijuntesti/webapp:${{ github.sha }}'
